@@ -1,0 +1,14 @@
+<h2>Summary</h2>
+<p>Total Spent: ₹{{ total }}</p>
+<p>Share per person: ₹{{ per_head }}</p>
+<table border="1">
+    <tr><th>Name</th><th>Paid</th><th>Balance</th></tr>
+    {% for name, data in contributions.items %}
+    <tr>
+        <td>{{ name }}</td>
+        <td>₹{{ data.paid }}</td>
+        <td>{% if data.balance < 0 %}<span style="color:red">{{ data.balance }}</span>{% else %}<span style="color:green">{{ data.balance }}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">Back</a>
