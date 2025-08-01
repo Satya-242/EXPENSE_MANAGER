@@ -16,7 +16,7 @@ def add_expense(request):
 def summary(request):
     expenses = Expense.objects.all()
     total = expenses.aggregate(Sum('amount'))['amount__sum'] or 0
-    per_head = round(total / 4, 2)
+    per_head = round(total / 3, 2)
 
     contributions = {}
     for name in ['Satya', 'Mani', 'kamal' ]:
