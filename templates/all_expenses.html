@@ -8,6 +8,7 @@
     <td>₹{{ e.amount }}</td>
     <td>{{ e.paid_by }}</td>
     <td><a href="/edit/{{ e.id }}/">Edit</a></td>
+    <td><a href="/delete/{{ e.id }}/">Delete</a></td>
   </tr>
   {% endfor %}
 </table>
