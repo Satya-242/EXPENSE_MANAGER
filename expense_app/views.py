@@ -3,6 +3,8 @@ from .forms import ExpenseForm
 from .models import Expense
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
 def index(request):
     return render(request, 'index.html')
 
@@ -10,8 +12,10 @@ def add_expense(request):
     form = ExpenseForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.success(request, "Expense added successfully.")
         return redirect('add_expense')
     return render(request, 'add_expense.html', {'form': form})
+
 
 def summary(request):
     expenses = Expense.objects.all()
@@ -52,5 +56,6 @@ def delete_expense(request, expense_id):
     expense = get_object_or_404(Expense, id=expense_id)
     if request.method == 'POST':
         expense.delete()
+        messages.success(request, "Expense deleted successfully.")
         return redirect('all_expenses')
     return render(request, 'confirm_delete.html', {'expense': expense})

@@ -1,2 +1,10 @@
-<h2>Welcome to Monthly Expense Tracker</h2>
-<a href="/add/">Add Expense</a> | <a href="/summary/">View Summary</a> | <a href="/expenses/">All Expenses</a>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-center">
+        <h2 class="mb-4">Welcome to Monthly Expense Tracker</h2>
+        <a href="/add/" class="btn btn-primary">Add Expense</a>
+        <a href="/summary/" class="btn btn-secondary">View Summary</a>
+        <a href="/expenses/" class="btn btn-info">All Expenses</a>
+    </div>
+{% endblock %}

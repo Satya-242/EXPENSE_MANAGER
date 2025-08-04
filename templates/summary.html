@@ -1,14 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h2>Summary</h2>
-<p>Total Spent: ₹{{ total }}</p>
-<p>Share per person: ₹{{ per_head }}</p>
-<table border="1">
-    <tr><th>Name</th><th>Paid</th><th>Balance</th></tr>
-    {% for name, data in contributions.items %}
-    <tr>
-        <td>{{ name }}</td>
-        <td>₹{{ data.paid }}</td>
-        <td>{% if data.balance < 0 %}<span style="color:red">{{ data.balance }}</span>{% else %}<span style="color:green">{{ data.balance }}</span>{% endif %}</td>
-    </tr>
-    {% endfor %}
+<div class="card p-3 mb-3">
+    <p><strong>Total Spent:</strong> ₹{{ total }}</p>
+    <p><strong>Share per person:</strong> ₹{{ per_head }}</p>
+</div>
+
+<table class="table table-bordered">
+    <thead class="table-secondary">
+        <tr>
+            <th>Name</th>
+            <th>Paid</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, data in contributions.items %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>₹{{ data.paid }}</td>
+            <td>
+                {% if data.balance < 0 %}
+                    <span class="text-danger">{{ data.balance }}</span>
+                {% else %}
+                    <span class="text-success">{{ data.balance }}</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
-<a href="/">Back</a>
+<a href="/" class="btn btn-link">Back</a>
+{% endblock %}
